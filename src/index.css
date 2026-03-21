@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  /* Vibrant & Premium Palette */
+  --bg-primary: #0f172a;   /* Deep slate */
+  --bg-secondary: #1e293b; 
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-orange: #f59e0b;
+
+  --glass-bg: rgba(30, 41, 59, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  
+  --transition-fast: 0.2s ease-out;
+  --transition-norm: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Container */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: transform var(--transition-norm), box-shadow var(--transition-norm);
+}
+
+.glass-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-norm);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--accent-green) 0%, #059669 100%);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+}
+
+.pulse {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Lists and Layout Helpers */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Topic specific tables/lists */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.data-table th, .data-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.data-table th {
+  color: var(--accent-pink);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.data-table tr:hover td {
+  background: rgba(255,255,255,0.05);
+}
+
+/* App Container */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.header p {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+/* Navigation */
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.nav-tab {
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.nav-tab:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.nav-tab.active {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+}
+
+/* React Markdown Styles */
+.markdown-body ul, .markdown-body ol {
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-pink);
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.5rem;
+}
+
+.markdown-body p {
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body strong {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid var(--accent-blue);
+  background: rgba(59, 130, 246, 0.1);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.markdown-body th, .markdown-body td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.markdown-body th {
+  color: var(--accent-pink);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.markdown-body tr:hover td {
+  background: rgba(255,255,255,0.05);
+}
